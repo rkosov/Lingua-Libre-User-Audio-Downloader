@@ -112,7 +112,7 @@ def create_folder(path):
 
 
 # Paste the username into the ""
-user = "Kisukononeko"
+user = ""
 
 # This controls whether to return a transcoded audio file. It can be either "mp3" "ogg" or "".
 audio_extension = ""

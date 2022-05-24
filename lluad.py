@@ -3,6 +3,8 @@ import os
 import re
 import requests
 import sparql
+import argparse
+
 
 global download_path, audio_extension
 
@@ -111,17 +113,27 @@ def create_folder(path):
     return None
 
 
+parser = argparse.ArgumentParser(description='Download the audio files recorded by a user.')
+parser.add_argument('-u', '--user', type=str,
+                    help='The name of the user that recorded the files')
+parser.add_argument('-a', '--audio', type=str,
+                    help='The format of the audio files that you wish to download. Can be "mp3", "ogg", or "wav".'
+                         'The default is "wav".')
+
+
+
+args = parser.parse_args()
 # Paste the username into the ""
-user = ""
+user = args.user
 
 # This controls whether to return a transcoded audio file. It can be either "mp3" "ogg" or "".
-audio_extension = ""
+audio_extension = args.audio
 
 # Either create a folder named after the user or use an existing one.
 create_folder(user)
 
 # Set the download path for the files.
-download_path = os.path.join(os.path.dirname(__file__), f"{user}")
+download_path = os.path.join(os.path.dirname(__file__), f"{args.user}")
 
 # Not that everything is set up, fetch all the user files.
 get_records(user)

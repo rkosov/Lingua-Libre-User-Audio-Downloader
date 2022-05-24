@@ -2,11 +2,19 @@
 A Python 3 script to download all the user files from Lingua Libre.
 
 # Usage
-To configure the downloader, you need to edit lluad.py.
+To run the program, you need Python 3.6 or greater.
 
-On line 115, enter the desired user name between ""
+The program accepts two, command-line paramaters and downloads the files into folder with the name of the user located in the same folder as the script.
 
-Optional, on line 118, you can specify either "mp3" or "ogg", if you desire to have either of these formats instead of the default wav files.
+-u or --user sets the user name.
+
+For example, python lluad.py -u "Adélaïde Calais WMFr" will download all the files for the user Adélaïde Calais WMFr.
+
+-a or --audio specifies the audio format, if you wish to download transcoded audio. You can choose either mp3 or ogg.
+
+For example, python lluad.py -u "Adélaïde Calais WMFr" -a mp3 will downloald all the files as mp3s.
+
+While, python lluad.py -u "Adélaïde Calais WMFr" -a ogg will downloald all the files as ogg files.
 
 # Other Information
 sparql.py taken from https://github.com/lingua-libre/Lingua-Libre-Bot .

@@ -90,7 +90,7 @@ def download_audio(filename):
 def get_records(user_name):
     # Set the Sparql query to only return results for the requested user.
     filters = f'?speaker prop:P11 ?linkeduser. FILTER( ?linkeduser = "{user_name}" ).'
-    print(f"Getting records for {user_name} records.")
+    print(f"Getting records for {user_name}.")
 
     # Run the Sparql query.
     raw_records = sparql.request(ENDPOINT, BASEQUERY.replace("#filters", filters))
@@ -119,21 +119,17 @@ parser.add_argument('-u', '--user', type=str,
 parser.add_argument('-a', '--audio', type=str,
                     help='The format of the audio files that you wish to download. Can be "mp3", "ogg", or "wav".'
                          'The default is "wav".')
-
-
-
 args = parser.parse_args()
-# Paste the username into the ""
+
+# Set the username from the command line.
 user = args.user
 
-# This controls whether to return a transcoded audio file. It can be either "mp3" "ogg" or "".
+# Set the audio extension from the command line.
 audio_extension = args.audio
 
 # Either create a folder named after the user or use an existing one.
-create_folder(user)
-
-# Set the download path for the files.
-download_path = os.path.join(os.path.dirname(__file__), f"{args.user}")
+download_path = os.path.join(os.path.dirname(__file__), f"{user}")
+create_folder(download_path)
 
 # Not that everything is set up, fetch all the user files.
 get_records(user)
